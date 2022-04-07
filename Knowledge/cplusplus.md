@@ -3,6 +3,9 @@
 > 一个为周赛准备的 C++ cheatsheet
 
 - [C++知识 🤭](#c知识-)
+  - [变量存储空间大小](#变量存储空间大小)
+    - [x86](#x86)
+    - [x64](#x64)
   - [数组](#数组)
   - [STL](#stl)
     - [`<vector>`](#vector)
@@ -15,6 +18,40 @@
       - [unordered_map](#unordered_map)
     - [`<set>`](#set)
       - [基础函数](#基础函数-1)
+
+## 变量存储空间大小
+
+注释中是变量占的字节数。
+
+### x86
+
+```c++
+sizeof(char)  //1
+sizeof(char*)  //4
+sizeof(int)  //4
+sizeof(int*)  //4
+sizeof(double)  //8
+sizeof(double*)  //4
+sizeof(float)  //4
+sizeof(float*)  //4
+sizeof(string)  //28
+sizeof(string*)  //4
+```
+
+### x64
+
+```c++
+sizeof(char)  //1
+sizeof(char*)  //8
+sizeof(int)  //4
+sizeof(int*)  //8
+sizeof(double)  //8
+sizeof(double*)  //8
+sizeof(float)  //4
+sizeof(float*)  //8
+sizeof(string)  //40
+sizeof(string*)  //8
+```
 
 ## 数组
 
