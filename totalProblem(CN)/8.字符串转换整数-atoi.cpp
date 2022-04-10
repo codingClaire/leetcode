@@ -46,7 +46,7 @@ public:
         int res = 0;
         int idx = 0;
         long num;
-        //起始是字符的情况，直接返回0
+        //起始是字母的情况，直接返回0
         if (!isNum(s[idx]) && s[idx] != ' ' && s[idx] != '+' && s[idx] != '-')
             return res;
         //删除空格
@@ -84,102 +84,33 @@ public:
 };
 
 // @lc code=end
-// 18.22% 23.19%
-class Solution
-{
-public:
-    long strToNum(string s, long num)
-    {
-        long ret_num = 0;
-        if (s.length() > 10 && num == 1)
-            ret_num = INT_MAX;
-        else if (s.length() > 10 && num == -1)
-            ret_num = INT_MIN;
-        else
-        {
-            long n = 1;
-            for (int i = s.length() - 1; i >= 0; i--)
-            {
-                ret_num += (s[i] - '0') * n;
-                n *= 10;
-            }
-            ret_num = num * ret_num;
-        }
-        return ret_num;
-    }
-
-    bool isNum(char ch)
-    {
-        return ch >= '0' && ch <= '9';
-    }
-
-    int myAtoi(string s)
-    {
-        int res = 0;
-        int idx = 0;
-        long num;
-        if (!isNum(s[idx]) && s[idx] != ' ' && s[idx] != '+' && s[idx] != '-')
-            return res;
-        while (s[idx] == ' ')
-        {
-            idx++;
-        }
-        if (s[idx] == '-')
-        {
-            num = -1;
-            idx++;
-        }
-        else if (s[idx] == '+')
-        {
-            num = 1;
-            idx++;
-        }
-        else
-        {
-            num = 1;
-        }
-        while (s[idx] == '0')
-        {
-            idx++;
-        }
-        string tmp = s.substr(idx, s.length() - idx);
-        idx = 0;
-        while (isNum(tmp[idx]))
-        {
-            idx++;
-        }
-        string nums = tmp.substr(0, idx);
-        num = strToNum(nums, num);
-        if (num > INT_MAX)
-            res = INT_MAX;
-        else if (num < INT_MIN)
-            res = INT_MIN;
-        else
-            res = int(num);
-        return res;
-    }
-};
-
 /*
 值得学习的评论区代码：
 
 class Solution {
     public int myAtoi(String str) {
-        str = str.trim();
-        if (str.length() == 0) return 0;
+        str = str.trim();// 删除空格
+        if (str.length() == 0) return 0; //长度为0
+        // 开头是字母的情况
         if (!Character.isDigit(str.charAt(0))
             && str.charAt(0) != '-' && str.charAt(0) != '+')
             return 0;
         int ans = 0;
+        //判断数字是正负号
         boolean neg = str.charAt(0) == '-';
+        //如果开头有符号去除符号
         int i = !Character.isDigit(str.charAt(0)) ? 1 : 0;
+        //当i是数字且小于字符串长度时
         while (i < str.length() && Character.isDigit(str.charAt(i))) {
+            //负数是Integer.MIN_VALUE，正数是Integer.MIN_VALUE + 1
             int tmp = ((neg ? Integer.MIN_VALUE : Integer.MIN_VALUE + 1) + (str.charAt(i) - '0')) / 10;
             if (tmp > ans) {
                 return neg ? Integer.MIN_VALUE : Integer.MAX_VALUE;
             }
+            //当前数乘10（类似10进制的左移，再减去下一个数（因为是负数）
             ans = ans * 10 - (str.charAt(i++) - '0');
         }
+        //最后正数再取反
         return neg ? ans : -ans;
     }
 }

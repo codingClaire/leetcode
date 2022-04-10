@@ -6,18 +6,21 @@
   - [变量存储空间大小](#变量存储空间大小)
     - [x86](#x86)
     - [x64](#x64)
+    - [INT 的边界](#int-的边界)
   - [数组](#数组)
+  - [字符与字符串](#字符与字符串)
   - [STL](#stl)
     - [`<vector>`](#vector)
       - [迭代器](#迭代器)
-    - [string](#string)
+    - [`<string>`](#string)
     - [`<stack>`](#stack)
       - [基础函数](#基础函数)
       - [栈的遍历](#栈的遍历)
-    - [map](#map)
-      - [unordered_map](#unordered_map)
+    - [`<map>`](#map)
+      - [`<unordered_map>`](#unordered_map)
     - [`<set>`](#set)
       - [基础函数](#基础函数-1)
+      - [遍历](#遍历)
 
 ## 变量存储空间大小
 
@@ -53,6 +56,12 @@ sizeof(string)  //40
 sizeof(string*)  //8
 ```
 
+### INT 的边界
+
+INT_MAX = 2^31-1=2147483647
+INT_MIN = -2^31=-2147483648
+也可以写成 Integer.MAX_VALUE 和 Integer.MIN_VALUE。
+
 ## 数组
 
 数组的赋值：
@@ -64,6 +73,10 @@ memset(mat,0,sizeof(mat));
 //2
 int mat[10][10]={0}; //初始化为0
 ```
+
+## 字符与字符串
+
+判断字符是否是数字：`bool isNum=Character.isDigit(ch)`，是数字返回 true，不是返回 false。
 
 ## STL
 
@@ -87,7 +100,11 @@ ivec.erase(iter);
 
 **删除迭代器指向的元素之后，当前迭代器的指向的单元没有变，而是先清空当前单元，然后后面单元的内容一个接一个移动到了前一个单元。**
 
-### string
+### `<string>`
+
+删除空格：`str = str.trim();`
+
+string 转 int `int num=stoi(str.c_str())`
 
 ### `<stack>`
 
@@ -121,9 +138,11 @@ for(int i=v.size()-1;i>=0;i--)
 
 ```
 
-### map
+### `<map>`
 
-#### unordered_map
+#### `<unordered_map>`
+
+unordered_map 在插入键的时候不会进行排序，所以一般不需要排序的哈希表用 unordered_map 来实现。
 
 ### `<set>`
 
@@ -147,3 +166,5 @@ auto it = st.begin();
 st.erase(*it);
 
 ```
+
+#### 遍历

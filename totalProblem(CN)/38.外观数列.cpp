@@ -15,16 +15,17 @@ public:
         // 21 -> 2-1 1-1 -> 2111
         string de = "";
         vector<int> nums_mp(10, 0);
-        int number_times=1;
+        int number_times = 1;
         for (int i = 0; i < num.length(); i++)
         {
-            if((num[i]-'0')!=(num[i+1]-'0'))
+            if ((num[i] - '0') != (num[i + 1] - '0'))
             {
-                de.append(1, number_times+'0'); // times
-                de.append(1, num[i]);          // character
-                number_times=1;
+                de.append(1, number_times + '0'); // times
+                de.append(1, num[i]);             // character
+                number_times = 1;
             }
-            else{ 
+            else
+            {
                 number_times++;
             }
         }
@@ -36,10 +37,10 @@ public:
         numlist.emplace_back("1");
         for (int i = 1; i < n; i++)
         {
-            string de = num2description(numlist[i-1]);
+            string de = num2description(numlist[i - 1]);
             numlist.emplace_back(de);
         }
-        return numlist[numlist.size()-1];
+        return numlist[numlist.size() - 1];
     }
 };
 // @lc code=end
