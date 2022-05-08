@@ -5,7 +5,8 @@
  */
 
 // @lc code=start
-//24.64 %  22.12 % 
+//[198] 打家劫舍
+// 24.64 %  22.12 %
 class Solution
 {
 public:
@@ -16,7 +17,7 @@ public:
         if (n == 1)
             return nums[0];
         vector<int> dp(n);
-        //dp[i] 表示前 i间房屋能偷到的最高总金额
+        // dp[i] 表示前 i间房屋能偷到的最高总金额
         dp[0] = nums[0];
         dp[1] = max(nums[1], nums[0]);
         for (int i = 2; i < n; i++)

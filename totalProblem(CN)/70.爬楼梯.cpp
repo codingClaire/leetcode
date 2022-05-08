@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+//[70] 爬楼梯
 // 100 %  44.89 %
 class Solution
 {
@@ -24,6 +25,7 @@ public:
     }
 };
 // @lc code=end
+//[70] 爬楼梯
 // 100 %  5.42 %
 class Solution
 {
