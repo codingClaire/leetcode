@@ -81,6 +81,7 @@ int mat[10][10]={0}; //初始化为0
 ## STL
 
 ### `<vector>`
+
 #### 迭代器
 
 定义迭代器：`vector<int>::iterator iter;`
@@ -98,6 +99,18 @@ ivec.erase(iter);
 ```
 
 **删除迭代器指向的元素之后，当前迭代器的指向的单元没有变，而是先清空当前单元，然后后面单元的内容一个接一个移动到了前一个单元。**
+
+移动迭代器
+advance() 函数用于将迭代器前进（或者后退）指定长度的距离，其语法格式如下：
+
+```c++
+template <class InputIterator, class Distance>
+    void advance (InputIterator& it, Distance n);
+```
+
+其中 it 指的是目标迭代器，n 通常为一个整数。
+
+需要注意的是，如果 it 为输入迭代器或者前向迭代器，则 n 必须为一个正数，即表示将 it 右移（前进） n 个位置；反之，如果 it 为双向迭代器或者随机访问迭代器，则 n 为正数时表示将 it 右移（前进） n 个位置，n 为负数时表示将 it 左移（后退） n 个位置。
 
 ### `<string>`
 
