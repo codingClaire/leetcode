@@ -9,7 +9,8 @@
     - [INT 的边界](#int-的边界)
   - [数组](#数组)
   - [字符与字符串](#字符与字符串)
-  - [STL](#stl)
+  - [顺序容器](#顺序容器)
+    - [`<array>`](#array)
     - [`<vector>`](#vector)
       - [迭代器](#迭代器)
     - [`<string>`](#string)
@@ -22,6 +23,8 @@
     - [`<set>`](#set)
       - [基础函数](#基础函数-2)
       - [遍历](#遍历)
+  - [泛型算法](#泛型算法)
+  - [匿名函数](#匿名函数)
 
 ## 变量存储空间大小
 
@@ -79,7 +82,11 @@ int mat[10][10]={0}; //初始化为0
 
 判断字符是否是数字：`bool isNum=Character.isDigit(ch)`，是数字返回 true，不是返回 false。
 
-## STL
+## 顺序容器
+
+### `<array>`
+
+> 固定大小数组，支持快速随机访问，不能添加或删除元素。
 
 ### `<vector>`
 
@@ -143,11 +150,7 @@ int main()
 
 删除空格：`str = str.trim();`
 
-
-
-
 string 转 int `int num=stoi(str.c_str())`
-
 
 ### `<stack>`
 
@@ -211,3 +214,46 @@ st.erase(*it);
 ```
 
 #### 遍历
+
+## 泛型算法
+
+1. accumulate: 求和
+
+前两个参数是求和的元素的范围，第三个是和的初始值。
+
+```c++
+int sum = accumulate(vec.begin(),vec.end(),0);
+```
+
+2. equal：确定序列是否保存相同的值。
+
+- 三个迭代器，前两个表示第一个序列中的元素范围，第三个表示第二个元素的首序列。
+- 要求第二个序列长度不小于第一个序列。
+
+## 匿名函数
+
+```c++
+[capture](parameters)->return-type{body}
+//[捕获列表](参数列表)->返回类型-{函数主体}
+#include<iostream>
+using namespace std;
+int main(){
+    int x=1,y=2,z=0;
+    auto add = [&z](auto x,auto y){z=x+y;return z;};
+    auto res = add(x,y);
+    cout<<res<<z<<endl;
+}
+```
+
+例子：
+
+```c++
+vector<pair<int,int>> costs;
+auto compare = [&](const auto& a,const auto& b ){
+        if (a.first != b.first)
+            return a.first > b.first;//价值不同时，价值大的优先
+        else
+            return a.second < b.second;//价值相同时，标号小的优先
+}
+sort(costs.begin(),costs.end(),compare);
+```
