@@ -1,3 +1,59 @@
+/*
+ * @lc app=leetcode.cn id=34 lang=cpp
+ *
+ * [34] 在排序数组中查找元素的第一个和最后一个位置
+ */
+
+// @lc code=start
+//[34] 在排序数组中查找元素的第一个和最后一个位置
+// 92.64 % 16.44 %
+class Solution
+{
+public:
+    vector<int> searchRange(vector<int> &nums, int target)
+    {
+        int min_pos=nums.size(),max_pos = nums.size(); // 非常重要的初始化
+        //如果比target更大的数不存在，那么max_pos会在最后成为nums.size()-1
+        // [1] 1那个样例就能够通过
+        // find min pos
+        int left = 0, right = nums.size() - 1, mid = -1;
+        while (left <= right)
+        {
+            mid = left + (right - left) / 2;
+            if(nums[mid]>=target)
+            {
+                right = mid-1;
+                min_pos = mid;
+            }
+            else
+            {
+                left = mid+1;
+            }
+        }
+        // find max pos
+        left = 0, right = nums.size() - 1;
+        while (left <= right)
+        {
+            int mid = (left+right)/2;
+            //left + (right - left) / 2;
+            if (nums[mid] > target)
+            {
+                right = mid-1;
+                max_pos = mid;
+            }
+            else
+            {
+                left = mid+1;
+            }
+        }
+        max_pos--;
+        if(min_pos<=max_pos&&max_pos<nums.size()&&nums[min_pos]==target&&nums[max_pos]==target)
+        //很重要的判断！！
+            return vector<int>{min_pos,max_pos};
+        return vector<int>{-1,-1};
+    }
+};
+// @lc code=end
 #include <bits/stdc++.h>
 using namespace std;
 class Solution1
