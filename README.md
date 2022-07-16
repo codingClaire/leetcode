@@ -49,8 +49,11 @@
 
 这个仓库是一个学习记录式的仓库，每周更新。
 
-- leetbook：按照 leetbook 刷题的题目记录和总结。
+- leetBook：按照 leetbook 刷题的题目记录和总结。目前在做！
+  -  [leetBook初级算法](leetbook/leetbook_basicAlgorithm.md)
+  -  [leetBook中级算法](leetbook/leetbook_mediumAlgorithm.md)
 - Knowledge：基础知识或专题性的记录，主要是 C++。
+  - [C++相关知识](Knowledge/cplusplus.md)
 - totalProblem(CN)：所有刷过的题目的源码。
 - weeklyCompetiton：周赛记录，不过近期没有在做了。
 - codingInterview：未来会记录一些实际问过的题和剑指 offer 的题目。
