@@ -1,14 +1,20 @@
-// dp解法 时间复杂度 O(n^2)  空间复杂度 O(n)
+/*
+ * @lc app=leetcode.cn id=300 lang=cpp
+ *
+ * [300] 最长递增子序列
+ */
+
+// @lc code=start
+//[300] 最长递增子序列
+// 49.78 % 36.73 %
 class Solution
 {
 public:
     int lengthOfLIS(vector<int> &nums)
     {
         int n = nums.size();
-        if (n == 0)
-            return 0;
-        vector<int> dp(n, 0);
-        for (int i = 0; i < n; i++)
+        vector<int> dp(n, 1);
+        for (int i = 1; i < n; i++)
         {
             dp[i] = 1;
             for (int j = 0; j < i; j++)
@@ -19,9 +25,10 @@ public:
                 }
             }
         }
-        return *max_element(dp.begin(), dp.end());
+        return *max_element(dp.begin(),dp.end());
     }
 };
+// @lc code=end
 //贪心+二分法
 //上升子序列尽可能长->序列上升得尽可能慢->每次在上升子序列最后加上的数尽可能小
 class Solution
@@ -42,10 +49,9 @@ public:
                 d[++len] = nums[i];
             else
             {
-                int l = 0, r = len, pos = -1;
-                // 注意这里pos要设置为-1，如果范围内的数都等于或比nums[i]小，那么就把nums[i]更新至d[0]中
-                //[l,r)的二分查找
-                // pos存储的是d里第一个比nums[i]大的数
+                int l = 0, r = len, pos = -1; // 注意这里pos要设置为-1
+                //如果范围内的数都等于或比nums[i]小，那么就把nums[i]更新至d[0]中
+                //[l,r)的二分查找,pos存储的是d里第一个比nums[i]大的数
                 while (l <= r)
                 {
                     int mid = (l + r) >> 1;
