@@ -50,8 +50,8 @@
 这个仓库是一个学习记录式的仓库，每周更新。
 
 - leetBook：按照 leetbook 刷题的题目记录和总结。目前在做！
-  -  [leetBook初级算法](leetbook/leetbook_basicAlgorithm.md)
-  -  [leetBook中级算法](leetbook/leetbook_mediumAlgorithm.md)
+  - [leetBook 初级算法](leetBook/leetbook_basicAlgorithm.md)
+  - [leetBook 中级算法](leetBook/leetbook_mediumAlgorithm.md)
 - Knowledge：基础知识或专题性的记录，主要是 C++。
   - [C++相关知识](Knowledge/cplusplus.md)
 - totalProblem(CN)：所有刷过的题目的源码。
