@@ -19,6 +19,8 @@
         - [KMP 算法](#kmp-算法)
       - [贪心](#贪心-1)
     - [3. 链表 ➡️](#3-链表-️)
+      - [链表元素相加](#链表元素相加)
+      - [链表元素重构](#链表元素重构)
       - [删除链表节点](#删除链表节点)
       - [反转链表 ⬅️](#反转链表-️)
     - [4. 栈 ⤵️](#4-栈-️)
@@ -50,8 +52,9 @@
 这个仓库是一个学习记录式的仓库，每周更新。
 
 - leetBook：按照 leetbook 刷题的题目记录和总结。目前在做！
-  - [leetBook 初级算法](leetBook/leetbook_basicAlgorithm.md)
-  - [leetBook 中级算法](leetBook/leetbook_mediumAlgorithm.md)
+  - [leetBook 初级算法](leetBook/leetbook_basicAlgorithm.md)【一刷：2022.03.27-05.30】
+  - [leetBook 中级算法](leetBook/leetbook_mediumAlgorithm.md) 【一刷：2022.05.30-08.07】
+  - [leetBook 高级算法](leetBook/leetbook_hardAlgorithm.md) 【一刷：2022.08.07 - 】
 - Knowledge：基础知识或专题性的记录，主要是 C++。
   - [C++相关知识](Knowledge/cplusplus.md)
 - totalProblem(CN)：所有刷过的题目的源码。
@@ -65,6 +68,9 @@
 ## 二、知识点总结和对应题目 😋
 
 ### 1. 数组 🔢
+
+【15. 三数之和】
+
 
 #### 简单模拟
 
@@ -146,6 +152,14 @@ int findSubset(vector<int> &nums, int k)
 
 ### 3. 链表 ➡️
 
+#### 链表元素相加
+
+【2.两数相加】
+
+#### 链表元素重构
+
+【328.奇偶链表】
+
 #### 删除链表节点
 
 【19.删除链表的倒数第 N 个结点】 双指针
@@ -189,7 +203,9 @@ int findSubset(vector<int> &nums, int k)
 
 ### 7. 位运算 0️⃣1️⃣
 
-- 【136.只出现一次的数字】 1 个出现一次的数字，其他都是出现两次的数字，0 再异或全部数字即可。
+- 【136.只出现一次的数字】
+- 【371. 两整数之和】
+- 
 
 #### 运算符和优先级
 
