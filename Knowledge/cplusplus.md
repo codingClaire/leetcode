@@ -187,6 +187,8 @@ for(int i=v.size()-1;i>=0;i--)
 
 ### `<map>`
 
+map在增加元素时，不需要判断key是否存在，在用`[]`访问时，如果key存在那么就正常取value，否则不会报错，会取value对象默认构造的值，且这个键值对会被插入到map中。比如value为 string对象，则构造空串；value为int对象，构造为0。
+
 #### `<unordered_map>`
 
 unordered_map 在插入键的时候不会进行排序，所以一般不需要排序的哈希表用 unordered_map 来实现。

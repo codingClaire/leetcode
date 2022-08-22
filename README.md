@@ -38,6 +38,7 @@
     - [8. 树 🌴](#8-树-)
       - [最近公共祖先](#最近公共祖先)
       - [二叉树](#二叉树)
+      - [BFS](#bfs)
     - [9. 图 🧩](#9-图-)
       - [欧拉通路](#欧拉通路)
     - [10. 动态规划 🔒](#10-动态规划-)
@@ -70,7 +71,6 @@
 ### 1. 数组 🔢
 
 【15. 三数之和】
-
 
 #### 简单模拟
 
@@ -205,7 +205,7 @@ int findSubset(vector<int> &nums, int k)
 
 - 【136.只出现一次的数字】
 - 【371. 两整数之和】
-- 
+-
 
 #### 运算符和优先级
 
@@ -248,6 +248,29 @@ int findSubset(vector<int> &nums, int k)
 #### 二叉树
 
 - 【2196. 根据描述创建二叉树（周赛）】
+
+#### BFS
+
+模板
+
+```c++
+        queue<TreeNode*> q;
+        q.push(root);
+        while(!q.empty())
+        {
+            int size = q.size();
+            for(int i=0;i<size;i++)
+            {
+                auto node =q.front();
+                q.pop();
+                if(node->left)
+                    q.push(node->left);
+                if(node->right)
+                    q.push(node->right);
+            }
+        }
+
+```
 
 ### 9. 图 🧩
 
