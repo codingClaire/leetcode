@@ -22,21 +22,41 @@
  *     const vector<NestedInteger> &getList() const;
  * };
  */
-
-class NestedIterator {
+//深度优先搜索方法：8.10% 80.22%
+class NestedIterator
+{
+private:
+    vector<int> vals;
+    vector<int>::iterator cur;
+    
+    void DFS(const vector<NestedInteger> &nestedList)
+    {
+        for(auto &nest:nestedList)
+        {
+            if (nest.isInteger())
+                vals.emplace_back(nest.getInteger());
+            else    
+                DFS(nest.getList());
+        }
+    }
 public:
-    NestedIterator(vector<NestedInteger> &nestedList) {
-        
+    NestedIterator(vector<NestedInteger> &nestedList)
+    {
+        DFS(nestedList);
+        cur = vals.begin();
     }
-    
-    int next() {
-        
+
+    int next()
+    {
+        return *cur++;
     }
-    
-    bool hasNext() {
-        
+
+    bool hasNext()
+    {
+        return cur!=vals.end();
     }
 };
+// TODO：还有一种解法
 
 /**
  * Your NestedIterator object will be instantiated and called as such:
@@ -44,4 +64,3 @@ public:
  * while (i.hasNext()) cout << i.next();
  */
 // @lc code=end
-

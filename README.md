@@ -16,12 +16,13 @@
 - leetBook：按照 leetbook 刷题的题目记录和总结。目前在做！
   - [leetBook 初级算法](leetBook/leetbook_basicAlgorithm.md)【一刷：2022.03.27-05.30】
   - [leetBook 中级算法](leetBook/leetbook_mediumAlgorithm.md) 【一刷：2022.05.30-08.07】
-  - [leetBook 高级算法](leetBook/leetbook_hardAlgorithm.md) 【一刷：2022.08.07 - 】
+  - [leetBook 高级算法](leetBook/leetbook_hardAlgorithm.md) 【一刷：2022.08.07 - 10.21】
 - Knowledge：基础知识或专题性的记录，主要是 C++。
   - [C++相关知识](Knowledge/cplusplus.md)
 - totalProblem(CN)：所有刷过的题目的源码。
-- weeklyCompetiton：周赛记录，不过近期没有在做了。
+- weeklyCompetiton：周赛记录，又开始做了。
 - codingInterview：未来会记录一些实际问过的题和剑指 offer 的题目。
+- PAT：收集一些ACM形式的题目，可能源于蓝桥杯或者PAT。
 
 ## 一、知识详解 😄
 
