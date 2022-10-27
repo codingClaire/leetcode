@@ -12,14 +12,22 @@ public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) 
     {
         vector<vector<int>> res;
+        // 按照左侧的键来排序
         sort(intervals.begin(),intervals.end());
         res.emplace_back(intervals[0]);
         for(int i=1;i<intervals.size();i++)
         {
+            // 有重合的
             if(intervals[i][0]<=res.back()[1])
-                res.back()[1] = max(intervals[i][1],res.back()[1]);
+            {
+                //合并
+                res.back()[1] = max(intervals[i][1], res.back()[1]);
+            }
             else
+            {// 没有重合就加入
                 res.emplace_back(intervals[i]);
+            }
+                
         }
         return res;
     }

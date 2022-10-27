@@ -7,6 +7,17 @@
 // @lc code=start
 // [169] 多数元素
 //投票算法
+/*
+Boyer-Moore 投票算法：
+重点介绍这个算法，主要就是维护两个数组，一个是 count 数组，另一个是 value 数组。
+count 数组的计算是这样的：
+如果当前 index 的 count 数组值为零，那么当前 index 的数就会是当前的 candidate，
+count 表示的是当前 candidate 出现的次数比非 candidate 出现的次数多几次，
+这样在遍历数组计算 count 时，遇到和当前 candidate 相同的数就加 1，否则就减 1。
+在最后一段中，candidate 存储的候选众数就是真正的众数。
+（为什么？可以理解乘众数和非众数两个阵营以一敌一地厮杀，
+直到最后剩下的必然属于多数阵营，所以最后存储的就是多数阵营）
+*/
 // 70.56% 34.53%
 class Solution
 {
@@ -18,9 +29,11 @@ public:
         for (int i = 0; i < nums.size(); i++)
         {
             if (nums[i] == candidate)
-                count++;
-            else if (--count < 0)
             {
+                count++;
+            }
+            else if (--count < 0)
+            { // count减1后，如果小于0
                 candidate = nums[i];
                 count = 1;
             }

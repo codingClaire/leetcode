@@ -14,6 +14,7 @@ public:
     {
         vector<vector<int>> ans;
         sort(nums.begin(), nums.end()); // 排序
+        //1. 定i
         for (int i = 0; i < nums.size(); i++)
         {
             // 当前i已经枚举过的不用考虑
@@ -21,12 +22,14 @@ public:
                 continue;
             int target = 0 - nums[i];
             int k = nums.size() - 1; // k从数组末尾开始枚举
+            //2. 定j
             for (int j = i + 1; j < nums.size(); j++)
             {
                 //当前j已经枚举过的不用考虑
                 if (j > i + 1 && nums[j] == nums[j - 1])
                     continue;
-                // 缩小范围
+                // 缩小范围 
+                // 3. 动k
                 while (j < k && nums[j] + nums[k] > target)
                 {
                     k--;

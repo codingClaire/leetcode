@@ -15,11 +15,12 @@ public:
         int len = nums.size();
         vector<int> res;
         res.emplace_back(1);
-        int right = 1; // 右侧的值的类乘
+        int right = 1; // 右侧的值的累乘
         //res先乘上左侧乘积
         for (int i = 0; i < len - 1; i++)
             res.emplace_back(nums[i] * res[i]);
-        //再乘上右侧类乘的积
+        //再乘上右侧累乘的积，
+        //这里就倒过来乘，这样就可以同步更新右侧乘积而不需要额外的空间了
         for (int i = len - 1; i >= 0; i--)
         {
             res[i] = res[i] * right;
