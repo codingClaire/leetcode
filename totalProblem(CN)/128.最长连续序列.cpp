@@ -21,6 +21,7 @@ public:
         {
             if(!st.count(num-1))
             {
+                // 从num开始找，因为经过了剪枝，所以可以降低到O(N)
                 int curNum = num;
                 int curLen = 1;
                 while(st.count(curNum+1))
