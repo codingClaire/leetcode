@@ -117,3 +117,52 @@ class Solution {
 
 
 */
+// 二刷很顺利地就过了，nice!
+class Solution
+{
+public:
+    int myAtoi(string s)
+    {
+        int i = 0;
+        int n = int(s.size());
+        while (s[i] == ' ')
+        {
+            i++;
+            n--;
+        }
+        bool neg = false;
+        if (s[i] == '-')
+        {
+            i++;
+            n--;
+            neg = true;
+        }
+        else if (s[i] == '+')
+        {
+            i++, n--;
+        }
+        while (s[i] == '0')
+        {
+            i++;
+            n--;
+        }
+
+        long res = 0;
+        int len = i + n;
+        while (i < len)
+        {
+            if (!(s[i] - '0' >= 0 && s[i] - '0' <= 9))
+                break;
+            if (res > INT_MAX)
+                break;
+            res = res * 10 + s[i] - '0';
+            i++;
+        }
+        res = neg == true ? -res : res;
+        if (res > INT_MAX)
+            res = INT_MAX;
+        if (res < INT_MIN)
+            res = INT_MIN;
+        return int(res);
+    }
+};

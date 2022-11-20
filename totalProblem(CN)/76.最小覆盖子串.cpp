@@ -60,3 +60,61 @@ public:
     }
 };
 // @lc code=end
+//自己写的第二遍！
+class Solution
+{
+public:
+    unordered_map<char, int> buffer, rule;
+    bool checkValid()
+    {
+        for (auto it = rule.begin(); it != rule.end(); it++)
+        {
+            if (!buffer.count(it->first))
+                return false;
+            if (buffer[it->first] < it->second)
+                return false;
+        }
+        return true;
+    }
+
+    string minWindow(string s, string t)
+    {
+        int r = -1, l = 0;
+        int res = s.size();
+        bool change = false;
+        int resl = 0, resr = s.size() - 1;
+        for (auto &ch : t)
+        {
+            rule[ch]++;
+        }
+        while (r < int(s.size()))
+        {
+
+            r++;
+            buffer[s[r]]++;
+            if (checkValid() == false)
+            {
+                continue;
+            }
+            else
+            {
+                while (checkValid() == true && l <= r)
+                {
+                    if (r - l + 1 < res)
+                    {
+                        resl = l;
+                        resr = r;
+                        res = r - l + 1;
+                    }
+                    change = true;
+                    buffer[s[l]]--;
+                    l++;
+                }
+            }
+        }
+
+        if (change == false)
+            return "";
+        return s.substr(resl, resr - resl + 1);
+    }
+};
