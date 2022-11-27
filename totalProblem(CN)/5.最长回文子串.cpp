@@ -32,7 +32,7 @@ public:
                 }
                 else
                 {
-                    if (right - left < 3)
+                    if (right - left < 3) // right-1 -(left+1) -1 <2 不需要判断
                         dp[left][right] = true;
                     else
                         dp[left][right] = dp[left + 1][right - 1];
