@@ -5,43 +5,44 @@
  */
 
 // @lc code=start
-// 广度优先遍历  87.02 % 63.06 %
+// 二刷  61.91 %  90.68 %
 class Solution
 {
 public:
     vector<vector<int>> edges;
-    vector<int> indeg;
-    vector<int> result; // 拓扑排序结果
+    vector<int> edge_num;
 
     vector<int> findOrder(int numCourses, vector<vector<int>> &prerequisites)
     {
         edges.resize(numCourses);
-        indeg.resize(numCourses);
-        //更新每个节点的出边，即每个节点访问前需要先访问的节点
-        for (const auto &pre : prerequisites)
-        {
-            edges[pre[1]].emplace_back(pre[0]);
-            indeg[pre[0]]++; // 统计节点的入边数
-        }
+        edge_num.resize(numCourses);
         queue<int> q;
-        // 先放入不需要先修课程的节点，也就是入度为0的节点
-        for (int i = 0; i < numCourses; i++)
+        vector<int> result;
+        // add edge
+        for(int i=0;i<prerequisites.size();i++)
         {
-            if (indeg[i] == 0)
-                q.push(i);
+            edges[prerequisites[i][1]].emplace_back(prerequisites[i][0]);
+            edge_num[prerequisites[i][0]]++; // 注意这里要统计节点的入边数
         }
-        int visited = 0;
-        while (!q.empty())
+        //add first node 
+        for(int i=0;i<numCourses;i++)
         {
-            int u = q.front();
-            q.pop();
-            result.emplace_back(u);
-            for (int v : edges[u])
+            if(edge_num[i]==0)
             {
-                indeg[v]--;
-                // 能加入队列的条件是先修课程都修完了，也就是入边减到0了
-                if (indeg[v] == 0)
-                    q.push(v);
+                q.push(i);
+            }
+        }
+        while(!q.empty())
+        {
+            int cur = q.front();
+            result.emplace_back(cur);
+            //cout<<cur<<endl;
+            q.pop();
+            for(int i=0;i<edges[cur].size();i++)
+            {
+                edge_num[edges[cur][i]]--;
+                if (edge_num[edges[cur][i]] == 0)
+                    q.push(edges[cur][i]);
             }
         }
         if(result.size() == numCourses)
@@ -105,5 +106,52 @@ public:
             return {};
         reverse(result.begin(), result.end());
         return result;
+    }
+};
+
+
+// 广度优先遍历  87.02 % 63.06 %
+class Solution
+{
+public:
+    vector<vector<int>> edges;
+    vector<int> indeg;
+    vector<int> result; // 拓扑排序结果
+
+    vector<int> findOrder(int numCourses, vector<vector<int>> &prerequisites)
+    {
+        edges.resize(numCourses);
+        indeg.resize(numCourses);
+        //更新每个节点的出边，即每个节点访问前需要先访问的节点
+        for (const auto &pre : prerequisites)
+        {
+            edges[pre[1]].emplace_back(pre[0]);
+            indeg[pre[0]]++; // 统计节点的入边数
+        }
+        queue<int> q;
+        // 先放入不需要先修课程的节点，也就是入度为0的节点
+        for (int i = 0; i < numCourses; i++)
+        {
+            if (indeg[i] == 0)
+                q.push(i);
+        }
+        int visited = 0;
+        while (!q.empty())
+        {
+            int u = q.front();
+            q.pop();
+            result.emplace_back(u);
+            for (int v : edges[u])
+            {
+                indeg[v]--;
+                // 能加入队列的条件是先修课程都修完了，也就是入边减到0了
+                if (indeg[v] == 0)
+                    q.push(v);
+            }
+        }
+        if(result.size() == numCourses)
+            return result;
+        else 
+            return {};
     }
 };

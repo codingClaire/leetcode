@@ -5,7 +5,42 @@
  */
 
 // @lc code=start
-
+// 位运算 13.88 %   39.48 %
+class Solution
+{
+public:
+    int findDuplicate(vector<int> &nums)
+    {
+        int ans = 0;
+        int n = nums.size();
+        int bit_max = 31;
+        while (!((n - 1) >> bit_max))
+        {
+            bit_max -= 1;
+        }
+        //cout<<bit_max<<endl;
+        for (int bit = 0; bit <= bit_max; bit++)
+        {
+            int x = 0, y = 0;
+            for (int i = 0; i < n; i++)
+            {   
+                //第i个数字在bit位上是否有1
+                if (nums[i] & (1 << bit))
+                {
+                    x += 1;
+                }
+                // 1-n在第bit位上有几个
+                if (i >= 1 && (i & (1 << bit)))
+                {
+                    y += 1;
+                }
+            }
+            if (x > y)
+                ans |= 1 << bit;
+        }
+        return ans;
+    }
+};
 // @lc code=end
 // 二分查找 O(nlogn) 40.25 % 58.51 %
 class Solution
@@ -24,15 +59,15 @@ public:
                 cnt += (nums[i] <= mid);
 
             if (cnt <= mid)
-            { //说明重复的数在右侧
+            { // 说明重复的数在右侧
                 left = mid + 1;
             }
             else
             {
                 right = mid - 1;
                 // 为什么要在这里更新？
-                //因为这里是cnt>mid的目前找到的最小的一个
-                //二分查找就逐渐往右 找到cnt>mid的最小的一个
+                // 因为这里是cnt>mid的目前找到的最小的一个
+                // 二分查找就逐渐往右 找到cnt>mid的最小的一个
                 ans = mid;
             }
         }
@@ -63,10 +98,10 @@ public:
             fast = nums[nums[fast]];
         } while (slow != fast);
         // 第二阶段
-        slow = 0; //相当于ptr，指向起始点
+        slow = 0; // 相当于ptr，指向起始点
         while (slow != fast)
         {
-            slow = nums[slow]; 
+            slow = nums[slow];
             fast = nums[fast]; // 充当之前的slow
         }
         return slow;
