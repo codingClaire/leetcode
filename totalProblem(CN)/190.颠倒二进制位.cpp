@@ -1,11 +1,32 @@
-/*
- * @lc app=leetcode.cn id=190 lang=cpp
- *
- * [190] 颠倒二进制位
- */
+好 /*
+    * @lc app=leetcode.cn id=190 lang=cpp
+    *
+    * [190] 颠倒二进制位
+    */
 
-// @lc code=start
-// [190] 颠倒二进制位 100 %  72.59 %
+    // @lc code=start
+    // [190] 颠倒二进制位
+    // 100 %  53.41 %
+    class Solution
+{
+public:
+    uint32_t reverseBits(uint32_t n)
+    {
+        uint32_t ans = 0;
+        for (int i = 0; i < 32; i++)
+        {
+            uint32_t curbit = n & 1;
+            ans = (ans<<1) + curbit; // 记得ans<<1要加括号
+            //cout<<ans<<endl;
+            n= n >> 1;          
+        }
+        return ans;
+    }
+};
+
+// @lc code=end
+
+// 位运算+分治 100 %  72.59 %
 class Solution
 {
 private:
@@ -17,6 +38,7 @@ private:
 public:
     uint32_t reverseBits(uint32_t n)
     {
+        //或最后运算  n >> 1 & M1 原来的偶数位到奇数位， (n & M1) << 1 原来的奇数位左移到偶数位，再把两个部分合并
         n = (n >> 1 & M1) | (n & M1) << 1;
         n = (n >> 2 & M2) | (n & M2) << 2;
         n = (n >> 4 & M4) | (n & M4) << 4;
@@ -25,7 +47,7 @@ public:
         return n;
     }
 };
-// @lc code=end
+
 // 49.49 %  5.29 %
 class Solution
 {
