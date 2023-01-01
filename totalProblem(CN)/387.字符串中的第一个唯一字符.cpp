@@ -5,26 +5,47 @@
  */
 
 // @lc code=start
-// 24.51 % 57.65 %
-class Solution {
+// 90.65 %  81.95 %
+class Solution
+{
 public:
-    int firstUniqChar(string s) 
+    int firstUniqChar(string s)
     {
-        unordered_map<int,int> mp;
-        for(int i=0;i<s.length();i++)
+        vector<int> mp(26, 0);
+        for (int i = 0; i < s.length(); i++)
         {
-            if(mp.count(s[i]-'a'))
+            mp[s[i] - 'a']++;
+        }
+        for (int i = 0; i < s.length(); i++)
+        {
+            if (mp[s[i] - 'a'] == 1)
+                return i;
+        }
+        return -1;
+    }
+};
+// @lc code=end
+// 24.51 % 57.65 %
+class Solution
+{
+public:
+    int firstUniqChar(string s)
+    {
+        unordered_map<int, int> mp;
+        for (int i = 0; i < s.length(); i++)
+        {
+            if (mp.count(s[i] - 'a'))
             {
-                mp[s[i]-'a']++;
+                mp[s[i] - 'a']++;
             }
             else
             {
-                mp.insert(make_pair(s[i]-'a',1));
+                mp.insert(make_pair(s[i] - 'a', 1));
             }
         }
-        for(int i=0;i<s.length();i++)
+        for (int i = 0; i < s.length(); i++)
         {
-            if(mp[s[i]-'a']==1)
+            if (mp[s[i] - 'a'] == 1)
             {
                 return i;
             }
@@ -32,7 +53,7 @@ public:
         return -1;
     }
 };
-// @lc code=end
+
 // 24.51 % 57.65 %
 class Solution
 {
