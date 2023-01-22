@@ -26,7 +26,7 @@ public:
 };
 // @lc code=end
 
-//找最大值，真的很机智！
+//方法一：寻找最大值 找最大值，真的很机智！
 // 100 % 40.13 %
 class Solution
 {
@@ -43,6 +43,7 @@ class Solution
 public:
     int findPeakElement(vector<int> &nums)
     {
+        // 随机找到picked
         int picked = rand() % nums.size();
         auto get = [&](int i) -> pair<int, int>
         {
@@ -50,10 +51,14 @@ public:
                 return {0, 0};
             return {1, nums[i]};
         };
+        // pair 先比较第一个，第一个相同就比较第二个
+        // picked已经是峰值：(get(picked - 1) < get(picked) && get(picked + 1) < get(picked)
         while (!(get(picked - 1) < get(picked) && get(picked + 1) < get(picked)))
         {
+            // 下坡
             if (get(picked - 1) > get(picked))
                 picked--;
+            // 上坡
             else
                 picked++;
         }

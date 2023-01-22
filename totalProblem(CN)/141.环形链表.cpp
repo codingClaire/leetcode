@@ -19,6 +19,27 @@ class Solution
 public:
     bool hasCycle(ListNode *head)
     {
+        if (head == nullptr || head->next == nullptr)
+            return false;
+        ListNode *fast = head->next, *slow = head;
+        // 如果都在head 那么根本不会进循环的！！
+        while (fast != slow)
+        {
+            if (fast == nullptr || fast->next == nullptr)
+                return false;
+            fast = fast->next->next;
+            slow = slow->next;
+        }
+        return true;
+    }
+};
+
+//  93.66 % 94.82 %
+class Solution
+{
+public:
+    bool hasCycle(ListNode *head)
+    {
         if (head == NULL || head->next == NULL)
         {
             return false;
