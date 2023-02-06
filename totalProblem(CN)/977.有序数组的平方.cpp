@@ -34,3 +34,35 @@ public:
     }
 };
 // @lc code=end
+
+
+
+//80.72 % 95.13 %
+class Solution
+{
+public:
+    vector<int> sortedSquares(vector<int> &nums)
+    {
+        int n = nums.size();
+        vector<int> res(n);
+        int left = 0;
+        int right = n - 1;
+        int cur = n - 1;
+        while (left <= right)
+        {
+            if (nums[left] * nums[left] < nums[right] * nums[right])
+            {
+                res[cur] = nums[right] * nums[right];
+                right--;
+            }
+            else
+            {
+
+                res[cur] = nums[left] * nums[left];
+                left++;
+            }
+            cur--;
+        }
+        return res;
+    }
+};

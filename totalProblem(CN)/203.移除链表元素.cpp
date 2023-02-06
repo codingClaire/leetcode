@@ -4,6 +4,7 @@
  * [203] 移除链表元素
  */
 
+
 // @lc code=start
 /**
  * Definition for singly-linked list.
@@ -15,6 +16,15 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
+struct ListNode
+{
+    int val;
+    ListNode *next;
+    ListNode(): val(0),next(NULL) {}
+    ListNode(int x) : val(x), next(NULL) {}
+    ListNode(int x, ListNode* next) : val(x), next(next) {}
+};
 // 递归写法： 72.73 % 5.23 %
 class Solution
 {

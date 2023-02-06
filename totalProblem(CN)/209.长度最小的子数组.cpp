@@ -1,7 +1,13 @@
+/*
+ * @lc app=leetcode.cn id=209 lang=cpp
+ *
+ * [209] 长度最小的子数组
+ */
+
+// @lc code=start
 // 官方题解1
 // 前缀和+二分查找
 // 时间复杂度O(nlogn)，空间复杂度O(n)
-
 class Solution
 {
 public:
@@ -11,7 +17,7 @@ public:
         if (len == 0)
             return 0;
         int ans = INT_MAX;
-        vector<int> sums(len + 1, 0); //创建前缀和数组
+        vector<int> sums(len + 1, 0); // 创建前缀和数组
         for (int i = 1; i <= len; i++)
         {
             sums[i] = sums[i - 1] + nums[i - 1];
@@ -19,7 +25,7 @@ public:
         for (int i = 0; i < len; i++)
         {
             int t = target + sums[i];
-            auto bound = lower_bound(sums.begin(), sums.end(), t); 
+            auto bound = lower_bound(sums.begin(), sums.end(), t);
             // bound说明当前元素的前缀和包含了target和前i个元素的和，如果bound存在
             // 那么ans就可以用bound的index减去i，表示这个区间（从第i个到当前元素）的和大于等于target
             if (bound != sums.end())
@@ -32,6 +38,31 @@ public:
         return ans;
     }
 };
+// @lc code=end
+// 二刷
+class Solution
+{
+public:
+    int minSubArrayLen(int target, vector<int> &nums)
+    {
+        int n = nums.size();
+        int left = 0, right = 0;
+        int total = 0;
+        int res = INT_MAX;
+        while (right <= n - 1)
+        {
+            total += nums[right];
+            while (total >= target)
+            { // why等于？ 因为题目等于包含在内的，也要保持更新
+                res = min(res, right - left + 1);
+                total -= nums[left];
+                left++;
+            }
+            right++;
+        }
+        return res == INT_MAX ? 0 : res;
+    }
+};
 
 // 官方题解2
 // 滑动窗口
@@ -40,7 +71,7 @@ public:
 // 然后将start右移一位，重复上述操作
 
 // 自己写的版本
-// 执行用时：8 ms, 在所有 C++ 提交中击败了 75.17 % 的用户 内存消耗： 10.3 MB, 在所有 C++ 提交中击败了 54.78 % 的用户 
+// 执行用时：8 ms, 在所有 C++ 提交中击败了 75.17 % 的用户 内存消耗： 10.3 MB, 在所有 C++ 提交中击败了 54.78 % 的用户
 
 class Solution
 {
@@ -73,7 +104,7 @@ public:
 
 // 题解版本
 // 题解版本的区别是会多次移动start指针，直到sum小于target
-// 两个排名相似 
+// 两个排名相似
 class Solution
 {
 public:

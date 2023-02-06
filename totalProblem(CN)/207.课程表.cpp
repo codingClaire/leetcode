@@ -1,3 +1,41 @@
+//二刷，复习了
+class Solution
+{
+public:
+    vector<vector<int>> edges;
+    vector<int> indeg;
+    bool canFinish(int numCourses, vector<vector<int>> &prerequisites)
+    {
+        edges.resize(numCourses);
+        indeg.resize(numCourses);
+        for (auto &p : prerequisites)
+        {
+            edges[p[1]].emplace_back(p[0]);
+            indeg[p[0]]++;
+        }
+        queue<int> q;
+        for (int i = 0; i < numCourses; i++)
+        {
+            if (indeg[i] == 0)
+                q.push(i);
+        }
+        int visited = 0;
+        while (!q.empty())
+        {
+            visited++;
+            int cur = q.front();
+            q.pop();
+            for (int i = 0; i < edges[cur].size(); i++)
+            {
+                indeg[edges[cur][i]]--;
+                if (indeg[edges[cur][i]] == 0)
+                    q.push(edges[cur][i]);
+            }
+        }
+        return visited == numCourses;
+    }
+};
+
 // 1. 深度优先搜索+拓扑排序 88.65% 57.18%
 class Solution
 {
