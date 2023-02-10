@@ -54,3 +54,29 @@ public:
         return true;
     }
 };
+
+// 二刷
+class Solution
+{
+public:
+    bool isAnagram(string s, string t)
+    {
+        unordered_map<char, int> st;
+        for (auto &ch : s)
+        {
+            st[ch]++;
+        }
+        for (auto &ch : t)
+        {
+            if (!st.count(ch))
+                return false;
+            st[ch]--;
+        }
+        for (auto it = st.begin(); it != st.end(); it++)
+        {
+            if (it->second != 0)
+                return false;
+        }
+        return true;
+    }
+};

@@ -17,6 +17,7 @@
  */
 
 // 48.84 % 77.47 %
+// 二刷： 92.86% 84.7 %
 class Solution
 {
 public:
@@ -73,6 +74,7 @@ public:
 };
 
 //简单的写法
+// 还是要掌握这个最简单的写法！！
 class Solution
 {
 public:

@@ -70,7 +70,7 @@ public:
         return dummy->next;
     }
 };
-//优雅双指针解法
+//优雅双指针解法 机智做法！！
 class Solution
 {
 public:
@@ -93,5 +93,35 @@ public:
         ListNode *ans = dummy->next;
         delete dummy;
         return ans;
+    }
+};
+
+
+// 二刷，普通做法
+class Solution
+{
+public:
+    ListNode *removeNthFromEnd(ListNode *head, int n)
+    {
+        if (head == nullptr)
+            return head;
+        ListNode *tmp = head;
+        int num = 1;
+        while (tmp->next != nullptr)
+        {
+            tmp = tmp->next;
+            num++;
+        }
+        int index = num - n - 1;
+        if (index == -1)
+            return head->next;
+        tmp = head;
+        while (index--)
+        {
+            tmp = tmp->next;
+        }
+
+        tmp->next = tmp->next == nullptr ? nullptr : tmp->next->next;
+        return head;
     }
 };
