@@ -55,7 +55,7 @@ public:
 
 // @lc code=end
 // 97.77 % 54.45%
-// 现在这样写好像编译会不通过了，奇怪
+//  没事了，是写错了
 class Solution
 {
 public:
@@ -64,21 +64,22 @@ public:
         stack<int> q;
         for (int i = 0; i < tokens.size(); i++)
         {
-            if (tokens[i] == '+' || tokens[i] == '-' || tokens[i] == '*' || tokens[i] == '/')
+            if (tokens[i] == "+" || tokens[i] == "-" || tokens[i] == "*" || tokens[i] == "/")
             {
                 int res;
                 int a = q.top();
                 q.pop();
                 int b = q.top();
                 q.pop();
-                if (tokens[i] == '+')
-                    res = a + b;
-                else if (tokens[i] == '-')
-                    res = a - b;
-                else if (tokens[i] == '*')
-                    res = a * b;
+                if (tokens[i] == "+")
+                    res = b + a;
+                else if (tokens[i] == "-")
+                    res = b - a;
+                else if (tokens[i] == "*")
+                    res = b * a;
                 else
-                    res = a / b;
+                    res = b / a;
+                // cout<<res<<endl;
                 q.push(res);
             }
             else

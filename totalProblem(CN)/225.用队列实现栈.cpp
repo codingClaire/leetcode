@@ -16,7 +16,6 @@ public:
 
     void push(int x)
     {
-
         q.push(x);
         for (int i = 0; i < q.size() - 1; i++)
         {
