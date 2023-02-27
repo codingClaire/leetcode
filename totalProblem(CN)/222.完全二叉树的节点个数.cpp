@@ -102,3 +102,98 @@ public:
         return countNodes(root->left) + countNodes(root->right) + 1;
     }
 };
+
+// 二刷
+
+// 位运算 + 二分查找
+class Solution
+{
+public:
+    bool exist(int k, TreeNode *node, int level)
+    {
+        for (int b = level - 1; node != nullptr && b >= 0; b--)
+        {
+            int cur = (1 << b) & k;
+            node = cur == 0 ? node->left : node->right;
+        }
+        return node != nullptr;
+    }
+
+    int countNodes(TreeNode *root)
+    {
+        if (root == nullptr)
+            return 0;
+        TreeNode *tmp = root;
+        int level = 0;
+        while (tmp->left != nullptr)
+        {
+            level++;
+            tmp = tmp->left;
+        }
+        int left = 1 << level, right = (1 << (level + 1)) - 1;
+        while (left < right)
+        {
+            int mid = (right - left + 1) / 2 + left;
+            if (exist(mid, root, level))
+            {
+                left = mid;
+            }
+            else
+            {
+                right = mid - 1;
+            }
+        }
+        return left;
+    }
+};
+
+// 另一种二分
+
+// 位运算 + 二分查找
+class Solution
+{
+public:
+    bool exist(int k, TreeNode *node, int level)
+    {
+        for (int b = level - 1; node != nullptr && b >= 0; b--)
+        {
+            int cur = (1 << b) & k;
+            node = cur == 0 ? node->left : node->right;
+        }
+        return node != nullptr;
+    }
+
+    int countNodes(TreeNode *root)
+    {
+        if (root == nullptr)
+            return 0;
+        TreeNode *tmp = root;
+        int level = 0;
+        while (tmp->left != nullptr)
+        {
+            level++;
+            tmp = tmp->left;
+        }
+        int left = 1 << level, right = (1 << (level + 1)) - 1;
+        while (left <= right)
+        {
+            int mid = ((right - left) >> 1) + left;
+            if (exist(mid, root, level))
+            {
+                left = mid + 1;
+            }
+            else
+            {
+                right = mid - 1;
+            }
+        }
+        return right;
+    }
+};
+
+/*
+第一种方法中，每次计算mid时，用的是右移一位并加上left的方式，
+这样得到的mid是偏向左边的，因此需要在判断节点是否存在时，将左右指针分别更新为mid和right。
+
+第二种方法中，计算mid的方式是使用位运算和加法的方式，得到的mid是偏向右边的，
+因此在判断节点是否存在时，需要将左右指针分别更新为left和mid -1。

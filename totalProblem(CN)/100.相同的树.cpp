@@ -17,10 +17,12 @@
  * };
  */
 // 100 % 16.91 %
-class Solution {
+class Solution
+{
 public:
-    bool isSameTree(TreeNode* p, TreeNode* q) {
-        if(p == nullptr && q == nullptr)
+    bool isSameTree(TreeNode *p, TreeNode *q)
+    {
+        if (p == nullptr && q == nullptr)
             return true;
         if (p == nullptr ^ q == nullptr || p->val != q->val)
             return false;
@@ -28,4 +30,3 @@ public:
     }
 };
 // @lc code=end
-

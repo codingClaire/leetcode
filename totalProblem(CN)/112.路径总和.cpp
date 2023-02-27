@@ -30,3 +30,20 @@ public:
 };
 // @lc code=end
 
+class Solution 
+{
+public:
+    bool recur(TreeNode* root, int leftSum)
+    {
+        if(root == nullptr)
+            return false;
+        if(root->left == nullptr && root->right == nullptr)
+            return leftSum == root->val;
+        return recur(root->left,leftSum-root->val) || recur(root->right,leftSum-root->val);
+    } 
+
+    bool hasPathSum(TreeNode* root, int targetSum) 
+    {
+        return recur(root, targetSum);
+    }
+};

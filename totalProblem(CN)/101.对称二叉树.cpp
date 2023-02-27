@@ -17,6 +17,29 @@
  * };
  */
 //[101] 对称二叉树
+// 76.03 % 23.3 %
+class Solution
+{
+public:
+    bool recursive(TreeNode *left, TreeNode *right)
+    {
+        if(left == nullptr && right!=nullptr)
+            return false;
+        if (right== nullptr && left!= nullptr)
+            return false;
+        if (right == nullptr && left== nullptr)
+            return true;
+        if (left->val != right->val)
+            return false;
+        return recursive(left->left, right->right) &&  recursive(left->right, right->left);  
+    }
+
+    bool isSymmetric(TreeNode *root)
+    {
+        return recursive(root->left, root->right);
+    }
+};
+// @lc code=end
 // 72.77 % 70.91 %
 class Solution
 {
@@ -42,4 +65,3 @@ public:
         return helper(root->left, root->right);
     }
 };
-// @lc code=end
