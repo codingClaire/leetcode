@@ -38,3 +38,29 @@ public:
 };
 // @lc code=end
 
+class Solution 
+{
+public:
+    vector<int> inorderTraversal(TreeNode* root)
+    {
+        vector<int> result;
+        stack<TreeNode*> st;
+        TreeNode* cur = root;
+        while(cur!=nullptr || !st.empty())
+        {
+            if(cur!=nullptr)
+            {
+                st.push(cur);
+                cur = cur->left; // 左
+            }
+            else
+            {
+                cur = st.top();
+                st.pop();
+                result.push_back(cur->val); //中
+                cur = cur->right; //右
+            }
+        }
+        return result;
+    }
+};
