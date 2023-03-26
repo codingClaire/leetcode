@@ -42,6 +42,7 @@ public:
 // @lc code=end
 
 //[5,4,6,null,null,3,7] 这个结果是false
+// 需要考虑左右的界
 //错误地解法
 class Solution
 {
@@ -58,5 +59,25 @@ public:
         bool left = isValidBST(root->left);
         bool right = isValidBST(root->right);
         return leftcur && rightcur && left && right;
+    }
+};
+
+class Solution
+{
+public:
+    bool helper(TreeNode *root, long left_value, long right_value)
+    {
+        if (root == nullptr)
+            return true;
+        if (root->val <= left_value)
+            return false;
+        if (root->val >= right_value)
+            return false;
+        return helper(root->left, left_value, root->val) & helper(root->right, root->val, right_value);
+    }
+
+    bool isValidBST(TreeNode *root)
+    {
+        return helper(root, LONG_MIN, LONG_MAX);
     }
 };

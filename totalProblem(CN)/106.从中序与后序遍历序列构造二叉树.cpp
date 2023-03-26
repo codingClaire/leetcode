@@ -39,7 +39,12 @@ public:
         int index = idx_map[root_val];
         // 下标减一，处理下一个根节点
         post_idx--;
+        // 注意这里有需要先创建右子树，再创建左子树的依赖关系。
+        //可以理解为在后序遍历的数组中整个数组是先存储左子树的节点，
+        //再存储右子树的节点，最后存储根节点，
+        //如果按每次选择「后序遍历的最后一个节点」为根节点，则先被构造出来的应该为右子树。
         // 构造右子树，范围为当前根节点位置的右边到中序遍历的右边界
+        // 这样post_idx才会逐渐递减！！！ 
         root->right = helper(index + 1, in_right, inorder, postorder);
         // 构造左子树，范围为中序遍历的左边界到当前根节点位置的左边
         root->left = helper(in_left, index - 1, inorder, postorder);
@@ -63,3 +68,32 @@ public:
 };
 // @lc code=end
 
+class Solution
+{
+    int post_idx;
+    unordered_map<int, int> idx_map;
+
+public:
+    TreeNode *recur(int in_left, int in_right, vector<int> &inorder, vector<int> &postorder)
+    {
+        if (in_left > in_right)
+            return nullptr;
+        int root_val = postorder[post_idx];
+        TreeNode *root = new TreeNode(root_val);
+        int in_idx = idx_map[root_val];
+        post_idx--;
+        root->right = recur(in_idx + 1, in_right, inorder, postorder);
+        root->left = recur(in_left, in_idx - 1, inorder, postorder);
+        return root;
+    }
+    TreeNode *buildTree(vector<int> &inorder, vector<int> &postorder)
+    {
+        post_idx = (int)postorder.size() - 1;
+        int idx = 0;
+        for (auto &num : inorder)
+        {
+            idx_map[num] = idx++;
+        }
+        return recur(0, (int)postorder.size()-1, inorder, postorder);
+    }
+};
