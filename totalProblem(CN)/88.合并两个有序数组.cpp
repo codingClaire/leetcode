@@ -67,3 +67,42 @@ public:
         }
     }
 };
+
+// 二刷
+
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) 
+    {
+        int pointer1=0, pointer2 =0;
+        vector<int> res;
+        while(pointer1<m && pointer2<n)
+        {
+            if(nums1[pointer1]>nums2[pointer2])
+            {
+                res.emplace_back(nums2[pointer2]);
+                pointer2++;
+            }
+            else
+            {
+                res.emplace_back(nums1[pointer1]);
+                pointer1++;
+            }
+        }
+        //cout<<pointer1<<" "<<pointer2<<endl;
+        if(pointer1<m)
+        {
+            for(int i=pointer1;i<m;i++)
+                res.emplace_back(nums1[i]);
+        }
+        if(pointer2<n)
+        {
+             for(int i=pointer2;i<n;i++)
+                res.emplace_back(nums2[i]);
+        }
+        for(int i=0;i<res.size();i++)
+        {
+            nums1[i] = res[i];
+        }
+    }
+};
