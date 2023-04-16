@@ -52,3 +52,28 @@ public:
         return res;
     }
 };
+
+class Solution
+{
+public:
+    void backtrack(vector<vector<int>> &res, vector<int> tmp, 
+                    vector<int> nums, int index)
+    {
+        if(index == nums.size())
+        {
+            res.emplace_back(tmp);
+            return;
+        }
+        backtrack(res, tmp, nums, index+ 1);
+        tmp.push_back(nums[index]);
+        backtrack(res, tmp, nums, index+ 1);
+        tmp.pop_back();
+    }
+    vector<vector<int>> subsets(vector<int> &nums)
+    {
+        vector<vector<int>> res;
+        vector<int> tmp;
+        backtrack(res, tmp, nums, 0);
+        return res;
+    }
+};
