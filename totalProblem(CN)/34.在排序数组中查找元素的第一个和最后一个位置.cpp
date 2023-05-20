@@ -7,6 +7,8 @@
 // @lc code=start
 //[34] 在排序数组中查找元素的第一个和最后一个位置
 // 92.64 % 16.44 %
+# include<bits/stdc++.h>
+using namespace std;
 class Solution
 {
 public:
@@ -131,7 +133,7 @@ public:
 int main()
 {
     Solution2 A;
-    vector<int> nums{2, 2};
+    vector<int> nums{2, 2, 3};
     int target = 3;
     vector<int> res;
     res = A.searchRange(nums, target);

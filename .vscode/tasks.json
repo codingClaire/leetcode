@@ -21,7 +21,11 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "detail": "调试器生成的任务。"
+            "detail": "调试器生成的任务。",
+            //从这里开始是自己添加的
+            "presentation": { 
+                "panel": "new" //默认为“shared“表示共享，改成new之后每个进程创建新的端口
+            }//添加这一整块代码块
         }
     ],
     "version": "2.0.0"

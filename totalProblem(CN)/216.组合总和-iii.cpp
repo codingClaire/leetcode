@@ -14,13 +14,17 @@ public:
     // 9个数选择k个数，让它们的和为n
     void DFS(int cur, int n,int k, int sum)
     {
+        //当前选择的数 加上 剩余的个数也到不了k 
+        //那么肯定全部加上也不够k个，直接剪枝
         if(temp.size()+(n-cur+1)<k || temp.size()>k)
             return;
+        //保存条件： tmp存了k个数 并且加起来要等于n的情况
         if(temp.size() == k  && accumulate(temp.begin(),temp.end(),0) == sum)
         {
             ans.emplace_back(temp);
             return;
         }
+        //每个数，选或不选
         temp.emplace_back(cur);
         DFS(cur+1, n,k,sum);
         temp.pop_back();

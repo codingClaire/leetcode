@@ -6,7 +6,7 @@
     "configurations": [
     
         {
-            "name": "gcc.exe - 生成和调试活动文件",
+            "name": "gcc.exe - debug",
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
